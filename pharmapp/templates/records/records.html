@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+{% include "nav.html"%}
+<div class="container">
+    <table>
+        <thead>
+            <tr>
+                <h5>Записи</h5>
+            </tr>
+        </thead>
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>Дата</td>
+                <td>Пациент</td>
+                <td>Врач</td>
+                <td>Комментарий врача</td>
+                <td>Услуга</td>
+                <td>Цена</td>
+                <td>Статус</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in recordsData %}
+            <tr>
+                <td>{{record.record_id}}</td>
+                <td>{{record.date_of_creation}}</td>
+                <td>{{record.first_name}} {{record.last_name}}</td>
+                <td>{{record.doctor_last_name}} - {{record.speciality}}</td>
+                <td>{{record.caption}}</td>
+                <td>{{record.service_name}}</td>
+                <td>{{record.price}}</td>
+                <td>{{record.service_status}}</td>
+                <td>
+                    <a class="button info-links" href="{{url_for('changeRecord', recordID = record.record_id)}}">Изменить</a>
+                    {%if session.userType == 'admin' or session.userType == 'moderator'%}
+                    <a class="button info-links" href="{{url_for('recordDelete', recordID = record.record_id)}}">Удалить</a>
+                    {%endif%}
+                </td>
+
+
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+</div>

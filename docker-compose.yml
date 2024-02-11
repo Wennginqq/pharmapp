@@ -1,0 +1,33 @@
+services:
+  pharmapp:
+    build: 
+      context: ./pharmapp/
+    links:
+      - mysql
+    ports:
+      - "5000:5000"
+    networks:
+      - pharmnetw
+    depends_on:
+      - mysql
+    volumes:
+      - ./pharmapp:/pharmapp/
+  
+  mysql:
+    image: mysql
+    restart: always
+    networks:
+      - pharmnetw
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    environment:
+      MYSQL_HOST: 'mysql'
+      MYSQL_ROOT_PASSWORD: 'root'
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
+
+networks:
+  pharmnetw:
+    driver: bridge

@@ -1,0 +1,36 @@
+
+{% include "nav.html"%}
+<div class="container">
+    <h5>Запись на прием</h5>
+    <form action="" method="post">
+        <table>
+            <tr>
+                <td>Врач</td>
+                <td>Услуга</td>
+                <td>Дата</td>
+            </tr>
+            <tr>
+
+                <td>
+                    <select name="doctor">
+                        {%for doctor in doctorData%}
+                        <option value="{{doctor.doctor_id}}">{{doctor.first_name}} {{doctor.last_name}} -
+                            {{doctor.speciality}}</option>
+                        {%endfor%}
+                    </select>
+                </td>
+                <td>
+                    <select name="service">
+                        {%for service in serviceData%}
+                        <option value="{{service.service_id}}">{{service.service_name}} Цена: {{service.price}}</option>
+                        {%endfor%}
+                    </select>
+                </td>
+                <td>
+                    <input type="datetime-local" name="datetime" id="">
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="Записать на прием">
+    </form>
+</div>

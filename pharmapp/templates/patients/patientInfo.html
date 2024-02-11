@@ -1,0 +1,54 @@
+{% include "nav.html"%}
+<div class="container">
+    <h5>Информация о пациенте</h5>
+    <table>
+        <tr>
+            <td>Логин</td>
+            <td>Имя</td>
+            <td>Фамилия</td>
+            <td>Возраст</td>
+            <td>Телефон</td>
+            <td>Паспорт</td>
+        </tr>
+        <tr>
+            {% for patient in patientData%}
+            <td>{{patient.username}}</td>
+            <td>{{patient.first_name}}</td>
+            <td>{{patient.last_name}}</td>
+            <td>{{patient.age}}</td>
+            <td>{{patient.phone}}</td>
+            <td>{{patient.passport}}</td>
+
+        </tr>
+    </table>
+
+    <h5>Информация о записях</h5>
+    {%if session.userType == 'moderator' or 'admin'%}
+    <a class="button" href="{{url_for('addRecord', userID = patient.patient_id)}}">Записать на прием</a>
+    {%endif%}
+    {%endfor%}
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>Дата записи</td>
+            <td>Комментарий врача</td>
+            <td>Врач</td>
+            <td>Профессия</td>
+            <td>Услуга</td>
+            <td>Цена</td>
+            <td>Статус записи</td>
+        </tr>
+        {% for record in recordsData%}
+        <tr>
+            <td>{{record.record_id}}</td>
+            <td>{{record.date_of_creation}}</td>
+            <td>{{record.caption}}</td>
+            <td>{{record.first_name +" "+record.last_name}}</td>
+            <td>{{record.speciality}}</td>
+            <td>{{record.service_name}}</td>
+            <td>{{record.price}}</td>
+            <td>{{record.service_status}}</td>
+        </tr>
+        {%endfor%}
+    </table>
+</div>

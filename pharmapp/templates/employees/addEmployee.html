@@ -1,0 +1,36 @@
+{% include "nav.html"%}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+<div class="container">
+    <div class="form-box">
+<form action="" method="post">
+
+        <div class="row">
+            <label for="first_name">Логин</label>
+            <input type="text" name='username' >
+            <label for="last_name">Пароль</label>
+            <input type="text" name='password' >
+            <label for="first_name">Имя</label>
+            <input type="text" name='first_name' >
+            <label for="last_name">Фамилия</label>
+            <input type="text" name='last_name' >
+        </div>
+        <div class="row">
+            <label for="age">Возраст</label>
+            <input type="text" name='age' >
+            <label for="phone">Номер телефона</label>
+            <input type="text" name='phone' >
+            <label for="username">Email</label>
+            <input type="text" name='email' >
+            <label for="Passport">Специальность</label>
+            <input type="text" name='speciality' >
+            <label for="userype">Тип пользователя</label>
+            <select name="usertype" id="">
+                <option value="1">Главный администратор</option>
+                <option value="2">Администратор за стойкой(младший мед.сотрудник)</option>
+                <option value="3">Врач</option>
+            </select>
+        </div>
+        <input class="button-primary" type="submit" value="Добавить сотрудника" />
+</form>
+</div>
+</div>

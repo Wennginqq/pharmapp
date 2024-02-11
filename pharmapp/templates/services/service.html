@@ -1,0 +1,28 @@
+{% include "nav.html"%}
+
+<div class="container">
+    <div class="form-box">
+        <h5>Услуги</h5>
+        {%if session.userType == 'admin' or session.userType == 'moderator'%}
+        <a class="button"href="{{url_for('addService')}}">Добавить услугу</a>
+        {%endif%}
+    <table>
+        <tr>
+            <td>Id</td>
+            <td>Название услуги</td>
+            <td>Цена</td>
+        </tr>
+        {%for service in serviceData%}
+        <tr>
+
+            <td>{{service.service_id}}</td>
+            <td>{{service.service_name}}</td>
+            <td>{{service.price}}</td>
+            {%if session.userType == 'admin' or session.userType == 'moderator'%}
+            <td><a class="button" href="{{url_for('serviceDelete', service_id = service.service_id)}}">Удалить</a></td>
+            {%endif%}
+        </tr>
+        {%endfor%}
+    </table>
+</div>
+</div>

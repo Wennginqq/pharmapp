@@ -1,0 +1,29 @@
+{% include "nav.html"%}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main.css') }}">
+<div class="container">
+    <div class="form-box">
+        <form action="{{ url_for('addPatient') }}" method="post">
+
+            <div class="row">
+
+                <label for="first_name">Имя</label>
+                <input type="text" name='first_name'>
+                <label for="last_name">Фамилия</label>
+                <input type="text" name='last_name'>
+                <label for="username">Логин</label>
+                <input type="text" name='username'>
+                <label for="password">Пароль</label>
+                <input type="text" name='password'>
+            </div>
+            <div class="row">
+                <label for="age">Возраст</label>
+                <input type="text" name='age'>
+                <label for="phone">Номер телефона</label>
+                <input type="text" name='phone'>
+                <label for="Passport">Паспорт</label>
+                <input type="text" name='passport'>
+            </div>
+            <input class="button-primary" type="submit" value="Отправить" />
+        </form>
+    </div>
+</div>

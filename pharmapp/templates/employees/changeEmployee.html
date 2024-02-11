@@ -1,0 +1,43 @@
+
+{% include "nav.html"%}
+
+<div class="container">
+    <h5>Данные о сотруднике</h5>
+    <form action="" method="post">
+
+                {%for employee in employeeData%}
+                <label for="username">Логин</label>
+                <input type="text" value="{{employee.username}}" name="username">
+
+                <label for="password">Пароль</label>
+                <input type="text" value="{{employee.password}}" name="password">
+
+                <label for="first_name">Имя</label>
+                <input type="text" value="{{employee.first_name}}" name="first_name">
+
+                <label for="last_name">Фамилия</label>
+                <input type="text" value="{{employee.last_name}}" name="last_name">
+
+                <label for="age">Возраст</label>
+                <input type="text" value="{{employee.age}}" name="age">
+
+                <label for="phone">Телефон</label>
+                <input type="text" value="{{employee.phone}}" name="phone">
+
+                <label for="email">Email</label>
+                <input type="text" value="{{employee.email}}" name="email">
+
+                <label for="speciality">Специальность</label>
+                <input type="text" value="{{employee.speciality}}" name="speciality">
+                
+                <label for="workedhours">Отработанные часы</label>
+                <input type="text" name='hours_worked' value={{employee.hours_worked}}>
+                {%endfor%}
+                    <select name="usertype">
+                        <option value="1">Главный администратор</option>
+                        <option value="2">Администратор за стойкой(младший мед.сотрудник)</option>
+                        <option value="3">Врач</option>
+                    </select>
+        <input type="submit" value="Изменить">
+    </form>
+</div>

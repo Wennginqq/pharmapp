@@ -1,0 +1,81 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+	{% include "nav.html"%}
+	<div class="container">
+		<div class="row">
+			<br>
+			<div class="row">
+			</div>
+			<br><br>
+			<div class="row">
+				<h2>Список пациентов</h2>
+
+				<div class="container eleven columns">
+					<table>
+						<tr>
+							{%if session.userType == 'admin' or session.userType == 'moderator'%}
+							<td><a class="button" href="{{url_for('addPatient')}}" name="addUserBtn">Добавить
+									пациента</a></td>
+							{%endif%}
+
+							<form method="post" action="{{url_for('showUsers')}}">
+								<td><input type="search" placeholder="Поиск по фамилии" name="searchByLastName"></td>
+								<td><button>Искать</button></td>
+							</form>
+
+						</tr>
+					</table>
+				</div>
+
+				<table>
+					<thead>
+						<tr>
+							<td>ID</td>
+							<td>Имя</td>
+							<td>Фамилия</td>
+							<td>Возраст</td>
+							<td>Телефон</td>
+							<td>Паспорт</td>
+							<td></td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for patient in patientData%}
+						<tr>
+							<td>{{patient.patient_id}}</td>
+							<td>{{patient.first_name}}</td>
+							<td>{{patient.last_name}}</td>
+							<td>{{patient.age}}</td>
+							<td>{{patient.phone}}</td>
+							<td>{{patient.passport}}</td>
+							<form method="POST" action="/">
+								<td>
+									<div class="container">
+										<a class="button info-links"
+											href="{{url_for('showInfoAboutUser', userID = patient.patient_id)}}">Подробнее</a>
+										<a class="button info-links"
+											href="{{url_for('changeUserData', userID = patient.patient_id)}}">Изменить</a>
+											{%if session.userType == 'admin' or session.userType == 'moderator'%}
+										<a class="button info-links"
+											href="{{url_for('patientDelete', userID = patient.patient_id)}}">Удалить</a>
+											{%endif%}
+									</div>
+								</td>
+							</form>
+						</tr>
+						{%endfor%}
+					</tbody>
+				</table>
+			</div>
+		</div>
+</body>
+
+</html>

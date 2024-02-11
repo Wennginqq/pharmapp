@@ -1,0 +1,25 @@
+{% include "nav.html"%}
+
+<div class="container">
+    <h5>Создание отчета по записям пациентов</h5>
+    <h6>Для создания отчета выберите две даты:</h6>
+    <div class="row">
+        <form action="" method="post">
+            <div class="four columns">
+                <label for="datefrom">От</label>
+                <input type="datetime-local" name='datefrom'>
+            </div>
+            <div class="four columns">
+                <label for="dateto">До</label>
+                <input type="datetime-local" name='dateto'>
+            </div>
+            <input class="button-primary"type="submit" value="Сформировать отчет по записям">
+        </form>
+    </div>
+    <div class="row">
+        <h5>Создание отчета по сотрудникам</h5>
+        <form action="{{url_for('formAndSendEmployeeReport')}}">
+            <input class="button-primary"type="submit" value="Сформировать отчет по сотрудникам">
+        </form>
+    </div>
+</div>

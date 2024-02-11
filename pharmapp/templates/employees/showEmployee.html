@@ -1,0 +1,83 @@
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+	{% include "nav.html"%}
+	<div class="container">
+		<div class="row">
+			<br>
+			<div class="row">
+			</div>
+			<br><br>
+			<div class="row">
+				<h2>Список сотрудников</h2>
+
+				<div class="container eleven columns">
+					<table>
+						<tr>
+							{%if session.userType == 'admin'%}
+							<td><a class="button" href="{{url_for('addEmployee')}}" name="addUserBtn">Добавить
+									сотрудника</a></td>
+							{%endif%}
+							<form method="post" action="{{url_for('showEmployee')}}">
+								<td><input type="search" placeholder="Поиск по фамилии" name="searchByLastName"></td>
+								<td><button>Искать</button></td>
+							</form>
+
+						</tr>
+					</table>
+				</div>
+
+				<table>
+					<thead>
+						<tr>
+							<td>ID</td>
+							<td>Логин</td>
+							<td>Пароль</td>
+							<td>Имя</td>
+							<td>Фамилия</td>
+							<td>Возраст</td>
+							<td>Телефон</td>
+							<td>Почта</td>
+							<td>Специальность</td>
+							<td>Отработанные часы</td>
+						</tr>
+					</thead>
+					<tbody>
+						{% for doctor in doctorData%}
+						<tr>
+							<td>{{doctor.doctor_id}}</td>
+							<td>{{doctor.username}}</td>
+							<td>{{doctor.password}}</td>
+							<td>{{doctor.first_name}}</td>
+							<td>{{doctor.last_name}}</td>
+							<td>{{doctor.age}}</td>
+							<td>{{doctor.phone}}</td>
+							<td>{{doctor.email}}</td>
+							<td>{{doctor.speciality}}</td>
+							<td>{{doctor.hours_worked}}</td>
+							<form method="POST" action="/">
+								<td>
+									<a class="button info-links"
+										href="{{url_for('changeEmployee', employeeID = doctor.doctor_id)}}">Изменить</a>
+										{%if session.userType == 'admin'%}
+										<a class="button info-links"
+										href="{{url_for('employeeDelete', employee_id = doctor.doctor_id)}}">Удалить</a>
+										{%endif%}
+								</td>
+
+							</form>
+						</tr>
+						{%endfor%}
+					</tbody>
+				</table>
+			</div>
+		</div>
+</body>
+
+</html>

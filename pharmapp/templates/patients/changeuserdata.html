@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+<div class="form-box">
+<form action="{{ url_for('userUpdate') }}" method="post">
+        {% for patient in userData%}
+        <div class="row">
+            <label for="ID">ID пользователя</label>
+            <input readonly type="text" name='first_name' value={{patient.patient_id}}>
+            <label for="first_name">Имя</label>
+            <input type="text" name='first_name' value={{patient.first_name}}>
+            <label for="last_name">Фамилия</label>
+            <input type="text" name='last_name' value={{patient.last_name}}>
+            <label for="username">Логин</label>
+            <input type="text" name='username' value={{patient.username}}>
+            <label for="password">Пароль</label>
+            <input type="text" name='password' value={{patient.password}}>
+        </div>
+        <div class="row">
+            <label for="age">Возраст</label>
+            <input type="text" name='age' value={{patient.age}}>
+            <label for="phone">Номер телефона</label>
+            <input type="text" name='phone' value={{patient.phone}}>
+            <label for="Passport">Паспорт</label>
+            <input type="text" name='passport' value={{patient.passport}}>
+        </div>
+        {% endfor %}
+        <input class="button-primary" type="submit" value="Отправить" />
+</form>
+</div>

@@ -1,0 +1,27 @@
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/main.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+<div class = 'row navbarLeft'>
+    <div class = "two columns">
+        <h6>Пользователь: <strong>{{session.username}}</strong></h6>
+        {% if session.userType == 'admin'%}
+        <a class = "button nav-menu-links" href="{{url_for('showEmployee')}}">Сотрудники</a>
+        <a class = "button nav-menu-links" href="{{url_for('showUsers')}}">Пациенты</a>
+        <a class = "button nav-menu-links" href="{{url_for('showRecords')}}">Записи</a>
+        <a class = "button nav-menu-links" href="{{url_for('showService')}}">Услуги</a>
+        <a class = "button nav-menu-links" href="{{url_for('formAndSendRecordsReport')}}">Отчеты</a>
+        {% elif session.userType == 'moderator'%}
+        <a class = "button nav-menu-links" href="{{url_for('showEmployee')}}">Сотрудники</a>
+        <a class = "button nav-menu-links" href="{{url_for('showUsers')}}">Пациенты</a>
+        <a class = "button nav-menu-links" href="{{url_for('showRecords')}}">Записи</a>
+        <a class = "button nav-menu-links" href="{{url_for('showService')}}">Услуги</a>
+        {% elif session.userType == 'doctor'%}
+        <a class = "button nav-menu-links" href="{{url_for('showRecords')}}">Записи</a>
+        <a class = "button nav-menu-links" href="{{url_for('showUsers')}}">Пациенты</a>
+        <a class = "button nav-menu-links" href="{{url_for('showService')}}">Услуги</a>
+        {% elif session.userType == 'patient'%}
+        <a class = "button nav-menu-links" href="{{url_for('showService')}}">Услуги</a>
+        {%endif%}
+        <a class="button button-primary logout-button" href="{{ url_for('logout') }}"> Выйти из аккаунта</a>
+
+    </div>
+</div>
